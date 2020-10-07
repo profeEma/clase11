@@ -1,0 +1,102 @@
+@import "colores";
+
+div {
+  background: $myGreen;
+  margin: 0 auto;
+  padding: 20px;
+   h1 {
+    color: $myBlue;
+  }
+   li {
+    color: $myWhite;
+  }
+}
+
+/* ejemplo 2 */
+$ancho: 720px;
+
+.box_one {
+  background-color: $blue;
+  width: $ancho/2;
+}
+.box_two {
+  background-color: $green;
+  width: ($ancho/2)-50;
+}
+.box_tres {
+  background-color: $blue;
+  width: ($ancho/2)+50;
+}
+.box_cuatro {
+  background-color: $green;
+  width: ($ancho/7)*2;
+}
+/* ejemplo 3 */
+.btn {
+  width: 100px;
+  text-align: center;
+  padding: 5px 0;
+  margin: 2px auto;
+  border-radius: 2px;
+  color: $myWhite;
+}
+
+.btn_success {
+  @extend .btn;
+  background-color: #108EFF;
+}
+.btn_alert {
+  @extend .btn;
+  background-color: #FF8516;
+}
+.btn_cancel {
+  @extend .btn;
+  background-color: #D61E20;
+}
+/* ejemplo 4 */
+@mixin container($ancho, $alto, $color) {
+  width: $ancho;
+  height: $alto;
+  background-color: $color;
+  border-radius: 5%;
+  text-align: center;
+  margin: 5px;
+} 
+
+.box_uno{
+  @include container(200px, 100px, $miVerde)
+}
+.box_dos{
+  @include container(150px, 50px, #108EFF)
+}
+
+/* ejemplo if */
+$animal: caballo; /* Mi constante */
+p {
+      @if $animal == gato {
+             color: blue;
+      } @else if $animal == perro {
+                 color: red;
+     } @else if $animal == caballo {
+                color: green;
+     } @else {
+                color: black;
+      }
+}
+/* ejemplo for */
+@for $i from 1 through 3 {
+  .casitodos-#{$i} { width: 6em * $i; }
+}
+
+/* ejemplo each + map */
+$redes: ( /*Declaramos nuestro mapa*/
+        twitter: #55acee,
+        facebook:  #3a5795,
+        send-mail: #C25E30
+); 
+/*Creamos el bucle para usar los valores del mapa*/
+@each $redSocial, $color in $redes {
+   .btn--#{$redSocial} {
+       background-color: $color;
+   }
+}
